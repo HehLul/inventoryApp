@@ -2,13 +2,19 @@ const express = require("express");
 const app = express();
 
 //views
-const path = rewuire("node:path");
+const path = require("node:path");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //routes
+const listingsRouter = require("./routes/listingsRouter");
+app.use("/listings", listingsRouter);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log("listinig to server on port: " + PORT);
-});
+try {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log("listening to server on port: " + PORT);
+  });
+} catch (err) {
+  console.error("Server failed to start:", err);
+}
