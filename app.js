@@ -9,6 +9,8 @@ app.set("view engine", "ejs");
 //routes
 const listingsRouter = require("./routes/listingsRouter");
 app.use("/listings", listingsRouter);
+const devsRouter = require("./routes/devsRouter");
+app.use("/devs", devsRouter);
 
 try {
   const PORT = process.env.PORT || 3000;
