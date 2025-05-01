@@ -12,6 +12,10 @@ app.use("/listings", listingsRouter);
 const devsRouter = require("./routes/devsRouter");
 app.use("/devs", devsRouter);
 
+app.get("/", (req, res) => {
+  res.render("index", []);
+});
+
 try {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {

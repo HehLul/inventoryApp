@@ -1,7 +1,7 @@
 //import db
-
+const devs = [];
 exports.devsListGet = async (req, res) => {
-  res.send("getting devs");
+  res.render("devs", { devs: devs });
 };
 
 exports.devNewGet = async (req, res) => {
@@ -21,7 +21,7 @@ exports.devUpdatePost = async (req, res) => {
 };
 
 exports.devGet = async (req, res) => {
-  res.send("getting dev");
+  res.render("viewDev", { dev: { name: "Saad", website: "thisismyport.com" } });
 };
 
 exports.devDelete = async (req, res) => {

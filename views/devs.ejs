@@ -8,12 +8,14 @@
         <a href="/devs">Developers</a>
       </ul>
     </div>
-    <div class="hero">
-      <h1>The World's #1 SaaS Marketplace</h1>
-      <h2>
-        Home to the best online real estate. Invest into the future of SaaS
-      </h2>
-      <a href="/listings">Get Started</a>
+    <div class="devs">
+      <h1>All Developers</h1>
+      <% for (let i = 0; i < devs.length; i++) { %>
+      <div>
+        <h1><%= devs[i].title %></h1>
+        <h2><%= devs[i].description %></h2>
+      </div>
+      <% } %>
     </div>
   </body>
 </html>

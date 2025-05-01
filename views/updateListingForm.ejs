@@ -1,0 +1,12 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Update Listing</h1>
+    <form action="/<%= listing._id %>/update" method="POST">
+      <input type="text" placeholder="Title" name="title" />
+      <input type="text" placeholder="Description" name="description" />
+      <input type="text" placeholder="Price" name="price" />
+      <button type="submit">Update</button>
+    </form>
+  </body>
+</html>

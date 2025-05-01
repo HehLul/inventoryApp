@@ -10,13 +10,13 @@ listingsRouter.get(
 );
 
 // GET listing by ID
-listingsRouter.get("/:id", listingsController.listingGet);
 
 listingsRouter.get("/new", listingsController.listingCreateGet);
 listingsRouter.post("/new", listingsController.listingCreatePost);
 
 listingsRouter.get("/:id/update", listingsController.listingUpdateGet);
 listingsRouter.post("/:id/update", listingsController.listingUpdatePost);
+listingsRouter.get("/:id", listingsController.listingGet);
 
 listingsRouter.delete("/:id", listingsController.listingDelete);
 

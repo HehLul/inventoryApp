@@ -1,7 +1,17 @@
 //import db
 
+const LISTINGS = [
+  {
+    title: "Hello",
+    description: "This i scoo lsaas pls buy",
+    price: 13000,
+    id: 43243,
+  },
+];
+
 exports.listingsGet = async (req, res) => {
-  res.send("getting listings");
+  res.render("listings", { listings: LISTINGS });
+  // res.send("getting listings");
 };
 
 exports.listingsCategoryGet = async (req, res) => {
@@ -13,7 +23,8 @@ exports.listingGet = async (req, res) => {
 };
 
 exports.listingCreateGet = async (req, res) => {
-  res.send("getting form to create listing");
+  res.render("createListingForm", {});
+  // res.send("getting form to create listing");
 };
 
 exports.listingCreatePost = async (req, res) => {
@@ -21,7 +32,8 @@ exports.listingCreatePost = async (req, res) => {
 };
 
 exports.listingUpdateGet = async (req, res) => {
-  res.send("getting form to update listing");
+  res.render("updateListingForm", {});
+  // res.send("getting form to update listing");
 };
 
 exports.listingUpdatePost = async (req, res) => {
