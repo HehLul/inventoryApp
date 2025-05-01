@@ -1,5 +1,7 @@
 //import db
 
+const db = require("../db/queries");
+
 const LISTINGS = [
   {
     title: "Hello",
@@ -10,19 +12,21 @@ const LISTINGS = [
 ];
 
 exports.listingsGet = async (req, res) => {
-  let category = req.query.category;
+  // let category = req.query.category;
 
-  let filteredListings = LISTINGS;
+  // let filteredListings = LISTINGS;
 
-  if (category.length == 0) {
-    category = category.toLowerCase();
-    console.log(category);
-    filteredListings = LISTINGS.filter(
-      (listing) => listing.category.toLowerCase() === category
-    );
-  }
+  // if (category.length == 0) {
+  //   category = category.toLowerCase();
+  //   console.log(category);
+  //   filteredListings = LISTINGS.filter(
+  //     (listing) => listing.category.toLowerCase() === category
+  //   );
+  // }
 
-  res.render("listings", { listings: filteredListings });
+  const listings = await db.getAllListings();
+
+  res.render("listings", { listings: listings });
 };
 
 exports.listingsCategoryGet = async (req, res) => {

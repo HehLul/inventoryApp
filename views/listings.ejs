@@ -14,13 +14,15 @@
       <a href="/listings?category=b2c">B2C</a>
       <a href="/listings/new">Create new listing</a>
       <% for (let i = 0; i < listings.length; i++) { %>
-      <div>
-        <h1><%= listings[i].title %></h1>
-        <h2><%= listings[i].description %></h2>
-        <h3><%= listings[i].price %></h3>
-        <a href="/listings/<%=listings[i].id%>">Open</a>
-      </div>
+        <div>
+          <h1><%= listings[i].title %></h1>
+          <p><%= listings[i].description %></p>
+          <p>Price: $<%= listings[i].price %></p>
+          <p>Clicks: <%= listings[i].clicks %></p>
+          <p>Date Posted: <%= listings[i].date_posted %></p>
+          <a href="/listings/<%= listings[i].id %>">Open Listing</a>
+        </div>
       <% } %>
-    </div>
+      
   </body>
 </html>

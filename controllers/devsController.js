@@ -1,6 +1,10 @@
 //import db
+
+const db = require("../db/queries");
+
 const devs = [];
 exports.devsListGet = async (req, res) => {
+  const devs = await db.getAllDevs();
   res.render("devs", { devs: devs });
 };
 
