@@ -1,14 +1,29 @@
 //import db
 
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
+const validateListing = [
+  body("title")
+    .trim()
+    .notEmpty()
+    .withMessage("Title is mandatory.")
+    .isLength({ max: 100 })
+    .withMessage("Title must be under 100 characters."),
 
-const LISTINGS = [
-  {
-    title: "Hello",
-    description: "This i scoo lsaas pls buy",
-    price: 13000,
-    id: 43243,
-  },
+  body("description")
+    .trim()
+    .notEmpty()
+    .withMessage("Description is required.")
+    .isLength({ max: 500 })
+    .withMessage("Description must be under 500 characters."),
+
+  body("price")
+    .notEmpty()
+    .withMessage("Price is required.")
+    .isNumeric()
+    .withMessage("Price must be a number.")
+    .custom((value) => value > 0)
+    .withMessage("Price must be greater than 0."),
 ];
 
 exports.listingsGet = async (req, res) => {
@@ -38,7 +53,9 @@ exports.listingsCategoryGet = async (req, res) => {
 };
 
 exports.listingGet = async (req, res) => {
-  res.send("getting listing with id: " + req.params.id);
+  const listing = await db.getListing(req.params.id);
+  res.render("viewListing", { listing: listing });
+  // res.send("getting listing with id: " + req.params.id);
 };
 
 exports.listingCreateGet = async (req, res) => {
@@ -46,9 +63,22 @@ exports.listingCreateGet = async (req, res) => {
   // res.send("getting form to create listing");
 };
 
-exports.listingCreatePost = async (req, res) => {
-  res.send("posting new created listing");
-};
+exports.listingCreatePost = [
+  validateListing,
+  async (req, res) => {
+    console.log(req.body.title);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.error(errors.array());
+      return res.status(400).send("Error with creating new lsiting");
+    }
+    // add listing to db
+    await db.insertListing(req.body);
+    res.redirect("/listings");
+
+    // res.send("posting new created listing");
+  },
+];
 
 exports.listingUpdateGet = async (req, res) => {
   res.render("updateListingForm", {});

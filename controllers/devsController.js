@@ -26,7 +26,8 @@ exports.devUpdatePost = async (req, res) => {
 };
 
 exports.devGet = async (req, res) => {
-  res.render("viewDev", { dev: { name: "Saad", website: "thisismyport.com" } });
+  const dev = await db.getDev(req.params.id);
+  res.render("viewDev", { dev: dev });
 };
 
 exports.devDelete = async (req, res) => {
