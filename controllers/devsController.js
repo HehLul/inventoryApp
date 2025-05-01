@@ -5,7 +5,8 @@ exports.devsListGet = async (req, res) => {
 };
 
 exports.devNewGet = async (req, res) => {
-  res.send("getting form to create new dev");
+  res.render("createDevForm", {});
+  // res.send("getting form to create new dev");
 };
 
 exports.devNewPost = async (req, res) => {

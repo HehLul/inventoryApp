@@ -4,10 +4,10 @@ const listingsRouter = Router();
 
 listingsRouter.get("/", listingsController.listingsGet);
 
-listingsRouter.get(
-  "/category/:cat_name",
-  listingsController.listingsCategoryGet
-);
+// listingsRouter.get(
+//   "/category/:cat_name",
+//   listingsController.listingsCategoryGet
+// );
 
 // GET listing by ID
 

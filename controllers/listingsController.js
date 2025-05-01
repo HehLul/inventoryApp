@@ -10,12 +10,27 @@ const LISTINGS = [
 ];
 
 exports.listingsGet = async (req, res) => {
-  res.render("listings", { listings: LISTINGS });
-  // res.send("getting listings");
+  let category = req.query.category;
+
+  let filteredListings = LISTINGS;
+
+  if (category.length == 0) {
+    category = category.toLowerCase();
+    console.log(category);
+    filteredListings = LISTINGS.filter(
+      (listing) => listing.category.toLowerCase() === category
+    );
+  }
+
+  res.render("listings", { listings: filteredListings });
 };
 
 exports.listingsCategoryGet = async (req, res) => {
-  res.send("getting listings from category: " + req.params.cat_name);
+  //know which category user is in
+  // fetch listings from that categroy
+  //redirect to listings + send listings of that category
+  // res.send("getting listings from category: " + req.params.cat_name);
+  res.redirect();
 };
 
 exports.listingGet = async (req, res) => {
